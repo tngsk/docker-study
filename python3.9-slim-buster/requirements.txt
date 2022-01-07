@@ -1,0 +1,12 @@
+numpy
+pandas
+openpyxl
+xlrd
+scikit-learn
+scipy
+matplotlib
+librosa
+django
+plotly
+jupyterlab
+ipykernel
