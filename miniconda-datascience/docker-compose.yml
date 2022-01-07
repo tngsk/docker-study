@@ -1,0 +1,16 @@
+version: "1"
+services:
+  lab:
+    image: python-datascience
+    container_name: ds-container 
+    build:
+        context: .
+        dockerfile: ./Dockerfile
+
+    ports:
+      - "8888:8888"
+
+    volumes:
+      - .:/home
+
+    # command: start.sh jupyter lab
