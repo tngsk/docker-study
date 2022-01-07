@@ -1,7 +1,7 @@
 version: "1"
 services:
   lab:
-    image: datascience-notebook
+    image: jupyter-datascience-notebook
     container_name: jupyter-container 
     build:
         context: .
