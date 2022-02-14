@@ -1,0 +1,14 @@
+version: "1"
+services:
+  lab:
+    image: python3.9-slim-buster
+    container_name: python3.9-slim 
+    build:
+        context: .
+        dockerfile: ./Dockerfile
+
+    ports:
+      - "8888:8888"
+
+    volumes:
+      - .:/home/penguin

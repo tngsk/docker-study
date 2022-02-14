@@ -1,0 +1,32 @@
+# builder
+FROM python:3.9-buster AS builder
+RUN apt update -y && apt install -y wget && apt clean
+RUN wget https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz && tar Jxvf ./ffmpeg-release-amd64-static.tar.xz && cp ./ffmpeg-5.0-amd64-static/ffmpeg /usr/local/bin/
+COPY requirements.txt ${PWD}
+RUN pip install -r requirements.txt
+
+# # runner
+# FROM python:3.9-slim-buster AS runner
+
+# # Python Modules
+# COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+# # Jupyter Lab
+# COPY --from=builder /usr/local/share /usr/local/share 
+# # ffmpeg
+# COPY --from=builder /usr/local/bin/ffmpeg /usr/local/bin/
+
+# apt-get
+RUN apt-get update && apt-get install -y libsndfile1-dev locales
+RUN locale-gen ja_JP.UTF-8
+
+# apt
+RUN apt update -y && apt install -y libpq5 libxml2
+RUN apt install -y nodejs npm
+RUN apt clean
+
+RUN adduser -q --gecos "" --disabled-login penguin
+USER penguin
+
+WORKDIR /home/penguin
+RUN echo "export LANG=ja_JP.UTF-8" >> ~/.bashrc
+CMD ["bash"]
