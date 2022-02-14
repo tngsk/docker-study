@@ -5,15 +5,15 @@ RUN wget https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.t
 COPY requirements.txt ${PWD}
 RUN pip install -r requirements.txt
 
-# # runner
-# FROM python:3.9-slim-buster AS runner
+# runner
+FROM python:3.9-slim-buster AS runner
 
-# # Python Modules
-# COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
-# # Jupyter Lab
-# COPY --from=builder /usr/local/share /usr/local/share 
-# # ffmpeg
-# COPY --from=builder /usr/local/bin/ffmpeg /usr/local/bin/
+# Python Modules
+COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+# Jupyter Lab
+COPY --from=builder /usr/local/share /usr/local/share 
+# ffmpeg
+COPY --from=builder /usr/local/bin/ffmpeg /usr/local/bin/
 
 # apt-get
 RUN apt-get update && apt-get install -y libsndfile1-dev locales
