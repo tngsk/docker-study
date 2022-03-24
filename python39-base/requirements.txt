@@ -5,7 +5,6 @@ xlrd
 scikit-learn
 scipy
 matplotlib
-librosa
 django
 plotly
 jupyterlab
@@ -17,3 +16,6 @@ music21
 pretty_midi
 librosa
 pysoundfile
+
+seaborn
+statannotations
